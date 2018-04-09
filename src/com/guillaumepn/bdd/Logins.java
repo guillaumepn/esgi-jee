@@ -21,13 +21,15 @@ public class Logins {
         try {
             statement = this.connection.createStatement();
 
-            result = statement.executeQuery("SELECT login, password FROM users");
+            result = statement.executeQuery("SELECT * FROM users");
 
             while (result.next()) {
+                int id = result.getInt("id");
                 String login = result.getString("login");
                 String password = result.getString("password");
 
                 User user = new User();
+                user.setId(id);
                 user.setLogin(login);
                 user.setPassword(password);
 

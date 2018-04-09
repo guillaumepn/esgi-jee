@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: guillaume
@@ -5,7 +6,7 @@
   Time: 12:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Connected</title>
@@ -25,6 +26,21 @@
 
 <h2>Page privée</h2>
 
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Login</th>
+        <th>Password</th>
+    </tr>
+
+    <c:forEach items="${ users }" var="user">
+        <tr>
+            <td><c:out value="${ user.getId() }"/></td>
+            <td><c:out value="${ user.getLogin() }"/></td>
+            <td><c:out value="${ user.getPassword() }"/></td>
+        </tr>
+    </c:forEach>
+</table>
 
 </body>
 </html>
