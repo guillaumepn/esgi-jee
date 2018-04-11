@@ -21,14 +21,14 @@ public class Accueil extends HttpServlet {
         String message;
         Logins logins = new Logins();
         if (logins.verifUser(user)) {
-                HttpSession session = request.getSession();
-                message = "Connexion réussie !";
-                session.setAttribute("login", request.getParameter("login"));
+            HttpSession session = request.getSession();
+            message = "Connexion réussie !";
+            session.setAttribute("login", request.getParameter("login"));
 
-                request.setAttribute("message", message);
+            request.setAttribute("message", message);
             response.sendRedirect("/connected");
         } else {
-            message = "Connexion fail :(";
+            message = "Erreur de connexion :(";
 
             request.setAttribute("message", message);
             this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);

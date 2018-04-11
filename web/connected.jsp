@@ -26,11 +26,12 @@
 
 <h2>Page privée</h2>
 
-<table>
+<table class="table">
     <tr>
         <th>ID</th>
         <th>Login</th>
         <th>Password</th>
+        <th>Supprimer</th>
     </tr>
 
     <c:forEach items="${ users }" var="user">
@@ -38,9 +39,11 @@
             <td><c:out value="${ user.getId() }"/></td>
             <td><c:out value="${ user.getLogin() }"/></td>
             <td><c:out value="${ user.getPassword() }"/></td>
+            <td><a href="/delete?id=${ user.getId() }" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a></td>
         </tr>
     </c:forEach>
 </table>
 
+<%@ include file="scripts.jsp"%>
 </body>
 </html>

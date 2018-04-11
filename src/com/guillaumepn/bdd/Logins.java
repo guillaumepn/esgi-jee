@@ -126,4 +126,19 @@ public class Logins {
             e.printStackTrace();
         }
     }
+
+    /**
+     * deleteUser
+     * @param userId
+     */
+    public void deleteUser(String userId) {
+        loadDatabase();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id = ?;");
+            preparedStatement.setString(1, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

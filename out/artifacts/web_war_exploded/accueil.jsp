@@ -16,11 +16,14 @@
 <%@ include file="header.jsp"%>
 <%@ include file="menu.jsp"%>
 
-<p>${ !empty message ? message : '' }</p>
+
+<c:if test="${!empty message}">
+    <div class="alert alert-info" role="alert">${ message }</div>
+</c:if>
 
 <h1>Accueil</h1>
 
-<h2>Connexion</h2>
+<h3>Connexion</h3>
 
 <c:choose>
   <c:when test="${ !empty sessionScope.login }">
@@ -28,20 +31,27 @@
       <p>Vous êtes connecté</p>
   </c:when>
   <c:otherwise>
-      <form action="accueil" method="post">
-          <p>
-              <label for="login">Login : </label>
-              <input type="text" id="login" name="login">
-          </p>
-          <p>
-              <label for="password">Password : </label>
-              <input type="password" id="password" name="password">
-          </p>
+      <form class="form-inline" action="accueil" method="post">
+              <input class="form-control" type="text" id="login" name="login" placeholder="Identifiant" required>
 
-          <input type="submit">
+              <input class="form-control" type="password" id="password" name="password" placeholder="Mot de passe" required>
+
+          <input class="btn btn-primary" type="submit" value="Se connecter">
       </form>
   </c:otherwise>
 </c:choose>
 
+<c:if test="${ empty sessionScope.login }">
+    <h3>Inscription</h3>
+    <form class="form-inline" action="register" method="post">
+        <input class="form-control" type="text" id="loginRegister" name="login" placeholder="Identifiant" required>
+
+        <input class="form-control" type="password" id="passwordRegister" name="password" placeholder="Mot de passe" required>
+
+        <input class="btn btn-primary" type="submit" value="S'inscrire">
+    </form>
+</c:if>
+
+<%@ include file="scripts.jsp"%>
 </body>
 </html>
