@@ -3,4 +3,40 @@
          xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
+
+    <env-entry>
+        <env-entry-name>dbhost</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>localhost</env-entry-value>
+    </env-entry>
+
+    <env-entry>
+        <env-entry-name>dbport</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>8889</env-entry-value>
+    </env-entry>
+
+    <env-entry>
+        <env-entry-name>dbname</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>esgi-jee</env-entry-value>
+    </env-entry>
+
+    <env-entry>
+        <env-entry-name>dblogin</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>root</env-entry-value>
+    </env-entry>
+
+    <env-entry>
+        <env-entry-name>dbpassword</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>root</env-entry-value>
+    </env-entry>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
+    </error-page>
 </web-app>
+

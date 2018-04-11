@@ -2,6 +2,10 @@ package com.guillaumepn.bdd;
 
 import com.guillaumepn.beans.User;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,12 +52,22 @@ public class Logins {
      * loadDatabase
      */
     private void loadDatabase() {
+
         try {
+            Context env = (Context)new InitialContext().lookup("java:comp/env");
+            String dbhost = (String)env.lookup("dbhost");
+            String dbport = (String)env.lookup("dbport");
+            String dbname = (String)env.lookup("dbname");
+            String dblogin = (String)env.lookup("dblogin");
+            String dbpassword = (String)env.lookup("dbpassword");
+
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:8889/esgi-jee?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://"+ dbhost +":"+ dbport +"/"+ dbname +"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", dblogin, dbpassword);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException e) {
             e.printStackTrace();
         }
     }
@@ -76,7 +90,7 @@ public class Logins {
             result = statement.executeQuery("SELECT * FROM users WHERE login = '" + user.getLogin() + "' AND password = '" + user.getPassword() + "';");
 
             while (result.next()) {
-              foundUser = true;
+                foundUser = true;
             }
         } catch (SQLException e) {
             System.out.println("test");
